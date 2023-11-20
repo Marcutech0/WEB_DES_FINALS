@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body background="background.jpg">
+
+    <!-- Header Section -->
+    <section class="page-header">
+        <div class="welcome">
+            <nav>
+                <ul>
+                    <li>
+                        <h1></h1>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <div>
+        <nav> 
+            <ul>
+                <li><a href="website_GUINTO.html">home</a></li>
+                <li><a href="website_page2.html">products</a></li>
+                <li><a href="website_page4.html">contacts</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 3px solid white;
+        }
+
+        th, td {
+            text-align: center;
+            color: white;
+            font-size: 25px;
+            position: relative;
+        }
+
+        .add-to-cart-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Added styles for the pop-up */
+        .cart-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            z-index: 1;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, 80%);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+
+    <script>
+        var tableData = [
+            { imageSrc: 'img1.jpg', text: 'Fujifilm XF18mm f/2 R Lens' },
+            { imageSrc: 'img2.jpg', text: 'Fujifilm XF35mm f/1.4 R Lens'},
+            { imageSrc: 'img3.jpg', text: 'Fujifilm XF14mm f2.8 R Lens' },
+            { imageSrc: 'img4.jpg', text: 'Fujifilm XF35mm f/1.4 R Lens' },
+            { imageSrc: 'img5.jpg', text: 'Fujifilm XF23mm f/1.4 Lens' },
+            { imageSrc: 'img6.jpg', text: 'Fujifilm XF56mm f1.2 R Lens' },
+            { imageSrc: 'img7.jpg', text: 'Fujifilm XF16mm f1.4 R Lens' }
+            // Add more rows as needed
+        ];
+
+        // Create a table element
+        var table = document.createElement('table');
+
+        // Function to handle the "Add to Cart" button click
+        function addToCart(product) {
+            // Customize this function based on your requirements
+            // Show the cart popup
+            var cartPopup = document.getElementById('cartPopup');
+            cartPopup.textContent = 'Product is added to your cart: ' + product;
+            cartPopup.style.display = 'block';
+
+            // Hide the cart popup after 2 seconds (adjust as needed)
+            setTimeout(function () {
+                cartPopup.style.display = 'none';
+            }, 2000);
+        }
+
+        // Iterate through the data and create rows for the table
+        tableData.forEach(function (rowData) {
+            // Create a table row
+            var row = table.insertRow();
+
+            // Create the first cell (column) for the image
+            var cell1 = row.insertCell(0);
+            var img = document.createElement('img');
+            img.src = rowData.imageSrc;
+            img.alt = 'Image';
+            img.style.width = '300px'; // Adjust the width as needed
+            cell1.appendChild(img);
+
+            // Create the second cell (column) for the text
+            var cell2 = row.insertCell(1);
+            cell2.textContent = rowData.text;
+
+            // Create the "Add to Cart" button
+            var addToCartButton = document.createElement('button');
+            addToCartButton.className = 'add-to-cart-button';
+            addToCartButton.textContent = 'Add to Cart';
+            addToCartButton.addEventListener('click', function () {
+                addToCart(rowData.text);
+            });
+
+            // Append the button to the row
+            cell2.appendChild(addToCartButton);
+        });
+
+        // Append the table to the body or any other parent element
+        document.body.appendChild(table);
+    </script>
+
+    <div>
+        <nav> 
+            <ul>
+                <li><a href="website_GUINTO.html">home</a></li>
+                <li><a href="website_page2.html">products</a></li>
+                <li><a href="website_page4.html">contacts</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Cart Popup -->
+    <div id="cartPopup" class="cart-popup"></div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>Email: martechofficial@gmail.com</p>
+    </div>
+    <div class="footer2">
+        <p>Contact: 8-7000-000</p>
+    </div>
+</body>
+</html>

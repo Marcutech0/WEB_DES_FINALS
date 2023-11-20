@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #cartModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        #cartModalContent {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body background="background.jpg">
+
+    <section class="page-header">
+        <div class="welcome">
+            <nav>
+                <ul>
+                    <li>
+                        <h1>MARTECH</h1>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+
+    <div>
+        <nav> 
+            <ul>
+                <li><a href="website_GUINTO.html">home</a></li>
+                <li><a href="website_page2.html">products</a></li>
+                <li><a href="website_page4.html">contacts</a></li>
+                <li><a href="#" id="cartTab"><img src="cart.png" alt="Cart Icon" width="50" height="50"></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="sub">
+        <h2>High-Quality Camera Lenses</h2>
+        <p>For Fujifilm Cameras</p>
+    </div>
+    <center>
+    <img src="image1.jpg">
+</center>
+    <nav>
+        <div class="header">
+            <h1>featured lenses</h1>
+        </div>
+    </nav>
+
+    <style>
+    .image-frame {
+        border: 2px solid #ccc;
+        padding: 5px;
+        display: inline-block;
+    }
+
+    .slideshow-img {
+        width: 20%;
+        height: auto;
+    }
+</style>
+
+    <center>
+        <div id="slideshow-container" style="padding: 10px;">
+            <img class="slideshow-img" src="img1.jpg" alt="Slide 1">
+            <img class="slideshow-img" src="img2.jpg" alt="Slide 2">
+            <img class="slideshow-img" src="img3.jpg" alt="Slide 3">
+            <img class="slideshow-img" src="img4.jpg" alt="Slide 4">
+            <img class="slideshow-img" src="img5.jpg" alt="Slide 5">
+            <img class="slideshow-img" src="img6.jpg" alt="Slide 6">
+        </div>
+    </center>
+
+
+    <div class="sub">
+        <h2>new fujifilm XF line</h2>
+        <p>visit our products section for more</p>
+    </div>
+
+      <nav>
+        <div class="header">
+            <h1></h1>
+        </div>
+    </nav>
+
+    <div id="cartModal">
+        <div id="cartModalContent">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h2>Shopping Cart</h2>
+            <ul id="cartItemsList"></ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Email: martechofficial@gmail.com</p>
+    </div>
+    <div class="footer2">
+        <p>Contact: 8-7000-000</p>
+    </div>
+
+
+    <div id="dropdownPanel">
+
+        <p>This is the dropdown panel content.</p>
+    </div>
+
+
+    <script>
+        var slideIndex = 0;
+
+        function showSlides() {
+            var slides = document.getElementsByClassName("slideshow-img");
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 1000);
+        }
+
+        showSlides();
+
+
+        var products = [
+            { name: 'Lens 1', price: 100 },
+            { name: 'Lens 2', price: 150 },
+            { name: 'Lens 3', price: 200 },
+        ];
+
+
+        function addToCart(product) {
+            var cartItemsList = document.getElementById('cartItemsList');
+            var cartItem = document.createElement('li');
+            cartItem.textContent = product.name + ' - $' + product.price;
+            cartItemsList.appendChild(cartItem);
+        }
+
+        function openCartModal() {
+            var modal = document.getElementById('cartModal');
+            modal.style.display = 'block';
+        }
+
+
+        function closeCartModal() {
+            var modal = document.getElementById('cartModal');
+            modal.style.display = 'none';
+        }
+
+        $(document).ready(function () {
+            $('#cartTab').on('click', function (e) {
+                e.preventDefault();
+                openCartModal();
+            });
+
+            $('.add-to-cart-button').on('click', function () {
+                var productName = $(this).data('name');
+                var productPrice = $(this).data('price');
+                addToCart({ name: productName, price: productPrice });
+            });
+        });
+    </script>
+</body>
+</html>
